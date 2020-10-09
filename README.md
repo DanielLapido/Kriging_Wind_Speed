@@ -7,11 +7,10 @@ employ data from the last 3 minutes and provide reliable predictions for the
 next minutes.
 
 Data collected along the aircraft trajectories:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg)
 <img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg" width=50% height=50%>
 
 Visualization of the wind vector field:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/arrows.jpg)
+<img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/arrows.jpg" width=50% height=50%>
 
 The Wind is decomposed into a North speed component and an East speed component by transforming the polar coordinates into cartesian coordinates.
 For each one of them, it is being assumed that the Speed is a random function that can be expressed as a sum of a trend component and a stationary residual component with zero mean.
