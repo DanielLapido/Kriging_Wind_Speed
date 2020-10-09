@@ -10,11 +10,15 @@ library(doParallel)
 library(rgdal)
 library(rgeos)
 library(readr)
-library(GSIF)
 library(clifro)
 library(MLmetrics)
 library(mgcv)
-library(flexmix)
+library(rworldmap)
+library(ggplot2)
+library(mapproj)
+library(plotly)
+library(caret)
+library(randomForest)
 theme_set(theme_minimal())
 
 #######################################
@@ -60,9 +64,6 @@ findInterval(datos$WindDir,int.dir)
 table(findInterval(datos$WindDir,int.dir))
 
 # Lets see the data on a map:
-library(rworldmap)
-library(ggplot2)
-library("mapproj")
 data(countriesLow)
 
 world <- fortify(countriesLow)
@@ -91,7 +92,7 @@ map +
         axis.line = element_blank(),
         axis.ticks = element_blank())
 
-library(plotly)
+
 # 3D-Scatterplot
 plot_ly(as.data.frame(datos),x=~datos$Lat,y=~datos$Long,z=~datos$Alt, type="scatter3d", mode="markers")
 
@@ -108,7 +109,6 @@ arrows3D(x0=as.matrix(datos[3]), y0=as.matrix(datos[4]), z0=as.matrix(datos[5]),
 
 
 # Windrose diagram
-library(clifro)
 windrose(speed = log(datos$WindSpeed),
          direction = datos$WindDir,
          ggtheme='minimal', legend_title = "Log of Wind Speed")
@@ -312,7 +312,6 @@ trend_pred = predict(gam_model, datos[time_interval, c(3,4,5, 14)])
 # ADDING PREDICTED RESIDUALS TO THE TREND
 prediction = trend_pred + pred@data[1]
 
-library(MLmetrics)
 MSE(prediction$var1.pred,datos$North_comp[time_interval])
 MSE(trend_pred,datos$North_comp[time_interval])
 
@@ -536,7 +535,7 @@ plot(prediction2$var1.pred[aux], datos$East_comp[time_interval][aux], xlab="Pred
 abline(0, 1, col=2)
 par(mfrow=c(1,1))
 
-library(caret)
+
 confusionMatrix(results$dir, true_values$dir)$table
 
 confusionMatrix(results$Windpeed, true_values$speed)
@@ -567,7 +566,6 @@ time_interval = datos$Time>=as.POSIXct('2016-10-14 07:48:00 CET')&datos$Time<=as
 coordinates(sub1)=~Lat+Long+Alt
 projection(sub1)=CRS("+init=epsg:4326")
 
-library(randomForest)
 rf.train <- randomForest(North_comp~Lat + Long + Alt + dtm, data = sub1,
                          ntree=length(train_interval),cutoff=c(0.7,0.3),mtry=3,importance=TRUE, do.trace=F)
 
@@ -602,7 +600,6 @@ hist(err[aux])
 
 rf.pred <- predict(rf.train, newdata=datos[time_interval, ])
 
-library(MLmetrics)
 MSE(rf.pred, datos$North_comp[time_interval])
 
 plot(rf.pred, datos$North_comp[time_interval])
@@ -667,7 +664,6 @@ plot(as.numeric(unlist(pred_forest@data[1])), datos$North_comp[time_interval])
 rf.pred <- predict(rf.train, newdata=datos[time_interval, ])
 prediction = rf.pred + pred_forest@data[1]
 
-library(MLmetrics)
 MSE(prediction$var1.pred,datos$North_comp[time_interval])
 MSE(rf.pred,datos$North_comp[time_interval])
 
@@ -762,7 +758,6 @@ stplot(pred2_forest)
 rf.pred2 <- predict(rf.train2, newdata=datos[time_interval, ])
 prediction2 = rf.pred2  + pred2_forest@data[1]
 
-library(MLmetrics)
 MSE(prediction2$var1.pred,datos$East_comp[time_interval])
 MSE(rf.pred2,datos$East_comp[time_interval])
 
@@ -795,13 +790,13 @@ abline(0,1, col=2)
 require(gridExtra)
 
 plot1  = windrose(speed = log(results$speed),
-         direction = results$direction,
-         ggtheme='minimal') + labs(title="Predicted wind speed") + theme(legend.position = "none")
+                  direction = results$direction,
+                  ggtheme='minimal') + labs(title="Predicted wind speed") + theme(legend.position = "none")
 
 
 plot2 = windrose(speed = log(true_values$WindSpeed),
-         direction = true_values$WindDir,
-         ggtheme='minimal') + labs(title="Observed wind speed")+ theme(legend.position = "none")
+                 direction = true_values$WindDir,
+                 ggtheme='minimal') + labs(title="Observed wind speed")+ theme(legend.position = "none")
 
 grid.arrange(plot1, plot2, ncol=2)
 
@@ -826,7 +821,7 @@ str(factor(findInterval(true_values$WindDir,int.dir)))
 results$dir=factor(findInterval(results$direction,int.dir),labels = as.character(paste("deg",int.dir[c(-1)],sep="")))
 
 true_values$dir=factor(findInterval(true_values$WindDir,int.dir),labels =
-                   as.character(paste("deg",int.dir[-1],sep="")))
+                         as.character(paste("deg",int.dir[-1],sep="")))
 
 confusionMatrix(results$dir, true_values$dir)$table
 
