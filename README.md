@@ -34,15 +34,15 @@ The spatio-temporal model trained with just 3 minutes provides good predictions 
 
 First 10 seconds:
 <p align="center">
-  <img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/presentation_rfwindrose10.jpeg" width=50% height=50%>
+  <img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/presentation_rfwindrose10.jpeg" width=70% height=70%>
 </p>
 
 Next minute:
 <p align="center">
-  <img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf_1mrose.jpeg" width=50% height=50%>
+  <img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf_1mrose.jpeg" width=70% height=70%>
 </p>
 
 Next 7 minutes:
 <p align="center">
-  <img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf5mrose.jpeg" width=50% height=50%>
+  <img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf5mrose.jpeg" width=70% height=70%>
 </p>
