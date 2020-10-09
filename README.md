@@ -8,7 +8,7 @@ next minutes.
 
 Data collected along the aircraft trajectories:
 ![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg)
-<img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg" width="100" height="100">
+<img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg" width="700" height="700">
 
 Visualization of the wind vector field:
 ![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/arrows.jpg)
