@@ -7,10 +7,11 @@ employ data from the last 3 minutes and provide reliable predictions for the
 next minutes.
 
 Data collected along the aircraft trajectories:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg){:height="50%" width="50%"}
+![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg)
+<img src="https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/datapoints.jpeg" width="100" height="100">
 
 Visualization of the wind vector field:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/arrows.jpg){:height="50%" width="50%"}
+![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/arrows.jpg)
 
 The Wind is decomposed into a North speed component and an East speed component by transforming the polar coordinates into cartesian coordinates.
 For each one of them, it is being assumed that the Speed is a random function that can be expressed as a sum of a trend component and a stationary residual component with zero mean.
@@ -20,16 +21,16 @@ The model is a combination of a Machine Learning model (Random Forest) that esti
 The Random Forest model is responsible for the large scale variation of the wind. If the trend estimated with the Random Forest is removed from the data, we obtain the residuals at the known locations. The residuals at nearby locations tend to be more similar that those far apart. This is called spatio-temporal correlation and Kriging takes advantage of it to get more precise predictions.
 
 Spatio-temporal correlation of the residuals:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/north_variogram.jpeg){:height="50%" width="50%"}
+![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/north_variogram.jpeg)
 
 
 The spatio-temporal model trained with just 3 minutes provides good predictions for the next minutes:
 
 First 10 seconds:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/presentation_rfwindrose10.jpeg){:height="50%" width="50%"}
+![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/presentation_rfwindrose10.jpeg)
 
 Next minute:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf_1mrose.jpeg){:height="50%" width="50%"}
+![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf_1mrose.jpeg)
 
 Next 7 minutes:
-![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf5mrose.jpeg){:height="50%" width="50%"}
+![](https://github.com/DanielLapido/Kriging_Wind_Speed/blob/main/Figures/rf5mrose.jpeg)
